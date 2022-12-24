@@ -8,29 +8,32 @@ import { ILocalidad } from "../models/localidad";
 })
 export class LocalidadesService {
 
+   URI:string = 'https://widumentaria-railway-back-production.up.railway.app'
+   //URI:string = 'http://localhost:3000'
+
   constructor(private http:HttpClient) {
 
   }
 
   getLocalidades()
    {
-      return this.http.get<ILocalidad[]>('https://widumentaria-railway-back-production.up.railway.app/localidades');
+      return this.http.get<ILocalidad[]>(this.URI+'/localidades');
    }
 
    saveLocalidad(unaLocalidad:ILocalidad)
    {
-      return this.http.post('https://widumentaria-railway-back-production.up.railway.app/localidades',unaLocalidad);
+      return this.http.post(this.URI+'/localidades',unaLocalidad);
    }
 
    updateLocalidad(unaLocalidad:ILocalidad)
    {
       let id:number = unaLocalidad.id_localidad;
 
-      return this.http.put('https://widumentaria-railway-back-production.up.railway.app/localidades/'+id,unaLocalidad);
+      return this.http.put(this.URI+'/localidades/'+id,unaLocalidad);
    }
 
    deleteLocalidad(id:number)
    {
-      return this.http.delete('https://widumentaria-railway-back-production.up.railway.app/localidades/'+id);
+      return this.http.delete(this.URI+'/localidades/'+id);
    }
 }

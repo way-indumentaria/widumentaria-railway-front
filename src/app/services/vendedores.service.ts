@@ -8,18 +8,21 @@ import { IVendedor } from "../models/vendedor";
 })
 export class VendedoresService {
 
+  URI:string = 'https://widumentaria-railway-back-production.up.railway.app'
+  //URI:string = 'http://localhost:3000'
+
   constructor( private http:HttpClient ) { }
 
   getVendedores(){
 
-    return this.http.get<IVendedor[]>('https://widumentaria-railway-back-production.up.railway.app/vendedores');
+    return this.http.get<IVendedor[]>(this.URI+'/vendedores');
    }
 
    actualizar_imagen(id,files:FileList)
    {
         const fd = new FormData();
         fd.append('img-vendedor',files[0]);
-        return this.http.put('https://widumentaria-railway-back-production.up.railway.app/vendedores-img/'+id,fd);
+        return this.http.put(this.URI+'/vendedores-img/'+id,fd);
    }
 
    saveVendedores(unVendedor:IVendedor,files:FileList){
@@ -46,7 +49,7 @@ export class VendedoresService {
       }
       
 
-    return this.http.post('https://widumentaria-railway-back-production.up.railway.app/vendedores', fd);
+    return this.http.post(this.URI+'/vendedores', fd);
     
 
    }
@@ -55,7 +58,7 @@ export class VendedoresService {
 
     let id:number = unVendedor.id_vendedor;
 
-    return this.http.put('https://widumentaria-railway-back-production.up.railway.app/vendedores/'+id,unVendedor);
+    return this.http.put(this.URI+'/vendedores/'+id,unVendedor);
 
 
    }
@@ -63,7 +66,7 @@ export class VendedoresService {
 
    deleteVendedor(id:number){
 
-    return this.http.delete('https://widumentaria-railway-back-production.up.railway.app/vendedores/' +id);
+    return this.http.delete(this.URI+'/vendedores/' +id);
    }
 
 }

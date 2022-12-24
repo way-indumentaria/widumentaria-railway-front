@@ -8,15 +8,18 @@ import { Router } from "@angular/router";
 })
 export class AutenticacionService {
 
+  URI:string = 'https://widumentaria-railway-back-production.up.railway.app'
+  //URI:string = 'http://localhost:3000'
+
   constructor(private http:HttpClient, private route:Router) { }
 
   register(datosRegistro:IUsuario){
-    return this.http.post('https://widumentaria-railway-back-production.up.railway.app/registro', datosRegistro);
+    return this.http.post(this.URI+'/registro', datosRegistro);
 
   }
 
   login(datosIngreso:IUsuario){
-    return this.http.post('https://widumentaria-railway-back-production.up.railway.app/ingreso', datosIngreso);
+    return this.http.post(this.URI+'/ingreso', datosIngreso);
 
   }
 

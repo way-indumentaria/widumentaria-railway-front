@@ -7,15 +7,18 @@ import { ICategoria } from "../models/categoria";
 })
 export class CategoriasService {
 
+  URI:string = 'https://widumentaria-railway-back-production.up.railway.app'
+  //URI:string = 'http://localhost:3000'
+
   constructor(private http:HttpClient) { }
   getCategoria(){
 
-    return this.http.get<ICategoria[]>('https://widumentaria-railway-back-production.up.railway.app/categoria');
+    return this.http.get<ICategoria[]>(this.URI+'/categoria');
   }
 
   saveCategoria(unaCategoria:ICategoria){
 
-    return this.http.post('https://widumentaria-railway-back-production.up.railway.app/categoria', unaCategoria);
+    return this.http.post(this.URI+'/categoria', unaCategoria);
     
 
    }
@@ -23,13 +26,13 @@ export class CategoriasService {
 
     let id:number = unaCategoria.id_categoria;
 
-    return this.http.put('https://widumentaria-railway-back-production.up.railway.app/categoria/'+id,unaCategoria);
+    return this.http.put(this.URI+'/categoria/'+id,unaCategoria);
 
 
    }
    deleteCategoria(id:number){
 
-    return this.http.delete('https://widumentaria-railway-back-production.up.railway.app/categoria/' +id);
+    return this.http.delete(this.URI+'/categoria/' +id);
    }
 
 

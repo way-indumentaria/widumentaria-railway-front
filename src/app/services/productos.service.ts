@@ -8,30 +8,33 @@ import { IProducto } from "../models/producto";
 })
 export class ProductosService {
 
+  URI:string = 'https://widumentaria-railway-back-production.up.railway.app'
+  //URI:string = 'http://localhost:3000'
+
   constructor(private http:HttpClient) {
 
   }
   getProductos()
    {
-      return this.http.get<IProducto[]>('https://widumentaria-railway-back-production.up.railway.app/producto');
+      return this.http.get<IProducto[]>(this.URI+'/producto');
    }
 
   saveProducto(unProducto:IProducto)
   {
     unProducto.fecha_carga=unProducto.fecha_carga.year+'-'+unProducto.fecha_carga.month+'-'+unProducto.fecha_carga.day;
-    return this.http.post('https://widumentaria-railway-back-production.up.railway.app/producto',unProducto);
+    return this.http.post(this.URI+'/producto',unProducto);
   }
 
   updateProducto(unProducto:IProducto)
   {
     let id:number = unProducto.id_producto;
     unProducto.fecha_carga=unProducto.fecha_carga.year+'-'+unProducto.fecha_carga.month+'-'+unProducto.fecha_carga.day;
-    return this.http.put('https://widumentaria-railway-back-production.up.railway.app/producto/'+id,unProducto);
+    return this.http.put(this.URI+'/producto/'+id,unProducto);
   }
 
   deleteProducto(id:number)
   {
-    return this.http.delete('https://widumentaria-railway-back-production.up.railway.app/producto/'+id);
+    return this.http.delete(this.URI+'/producto/'+id);
   }
 
 }

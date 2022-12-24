@@ -8,25 +8,28 @@ import { IGasto } from "../models/gasto";
 })
 export class GastosService {
 
+  URI:string = 'https://widumentaria-railway-back-production.up.railway.app'
+  //URI:string = 'http://localhost:3000'
+
   constructor(private http:HttpClient) {
 
   }
 
    getGastos()
    {
-      return this.http.get<IGasto[]>('https://widumentaria-railway-back-production.up.railway.app/gastos');
+      return this.http.get<IGasto[]>(this.URI+'/gastos');
    }
 
    saveGasto(unGasto:IGasto)
    {
-     return this.http.post('https://widumentaria-railway-back-production.up.railway.app/gastos',unGasto);
+     return this.http.post(this.URI+'/gastos',unGasto);
    }
 
    updateGasto(unGasto:IGasto){
 
     let id:number = unGasto.id_gasto;
 
-    return this.http.put('https://widumentaria-railway-back-production.up.railway.app/gastos/'+id,unGasto);
+    return this.http.put(this.URI+'/gastos/'+id,unGasto);
 
 
    }
@@ -34,6 +37,6 @@ export class GastosService {
 
    deleteGasto(id:number){
 
-    return this.http.delete('https://widumentaria-railway-back-production.up.railway.app/gastos/' +id);
+    return this.http.delete(this.URI+'/gastos/' +id);
    }
 }
